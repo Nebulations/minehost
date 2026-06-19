@@ -1,0 +1,4 @@
+.idea/
+services/artifacts/
+
+pipeline/webhook/webhook-secret

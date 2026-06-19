@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>me.nebu</groupId>
+    <artifactId>minehost</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>libraries/java-api</module>
+
+        <module>plugins/lobby-plugin</module>
+        <module>plugins/velocity-plugin</module>
+
+        <module>services/api</module>
+        <module>pipeline/minehost-webhook</module>
+    </modules>
+
+</project>
