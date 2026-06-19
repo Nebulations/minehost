@@ -20,7 +20,21 @@ docker build -t minehost-proxy templates/proxy
 echo "Building lobby"
 docker build -t minehost-lobby templates/lobby
 
+echo "==== Updating docker containers ===="
+# This is temporary but force stop all containers and remove them
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+
+# Start the proxy
+docker run -d --name minehost-proxy --network minehost -p 25565:25565 minehost-proxy
+
+# Start lobby 1
+docker run -d --name lobby-1 --network minehost -p 30000:25565 minehost-lobby
+
 echo "==== Cleaning up files ===="
 # TODO: Delete files
+cd ..
+rm code.zip
+rm -rf minehost-main
 
 echo "Done."
