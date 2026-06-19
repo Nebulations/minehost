@@ -1,6 +1,5 @@
 package me.nebu.lobby;
 
-import me.nebu.lobby.commands.ReloadCommand;
 import me.nebu.lobby.commands.SpawnCommand;
 import me.nebu.lobby.events.GriefPrevention;
 import me.nebu.lobby.events.JoinAndQuitListener;
@@ -19,7 +18,6 @@ public final class Lobby extends JavaPlugin {
     public void onEnable() {
         SPAWN = new Location(Bukkit.getWorld("world"), 0.5, 100, 0.5, 180, 0);
         registerCommands(
-                new ReloadCommand(),
                 new SpawnCommand()
         );
 
