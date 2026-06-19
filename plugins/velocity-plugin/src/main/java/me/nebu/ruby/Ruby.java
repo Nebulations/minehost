@@ -10,10 +10,8 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import me.nebu.RubyAPI;
 import me.nebu.ruby.commands.JoinCommand;
 import me.nebu.ruby.commands.LobbyCommand;
-import me.nebu.ruby.servers.Lobby;
+import me.nebu.ruby.servers.LobbyManager;
 import org.slf4j.Logger;
-
-import java.util.List;
 
 @Plugin(id = "ruby", name = "Ruby", version = "1.0.0")
 public class Ruby {
@@ -21,14 +19,12 @@ public class Ruby {
     private final ProxyServer server;
     private final Logger logger;
 
-    private final List<Lobby> lobbies = List.of(
-            new Lobby(0, "127.0.0.1", 30000)
-    );
-
     @Inject
     public Ruby(ProxyServer server, Logger logger) {
         this.server = server;
         this.logger = logger;
+
+        LobbyManager.configure(1);
 
         RubyAPI.configure("http://localhost:8080");
     }

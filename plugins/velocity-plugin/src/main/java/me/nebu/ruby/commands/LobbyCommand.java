@@ -4,6 +4,7 @@ import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
+import me.nebu.ruby.servers.LobbyManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 
@@ -22,7 +23,7 @@ public class LobbyCommand implements SimpleCommand {
             return;
         }
 
-        RegisteredServer server = this.server.getServer("lobby-dev").orElse(null);
+        RegisteredServer server = this.server.getServer("lobby-" + LobbyManager.getRandomLobby()).orElse(null);
 
         if (server == null) {
             player.sendMessage(Component.text("An error occurred.", NamedTextColor.RED));
