@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ErrorController implements org.springframework.boot.webmvc.error.ErrorController {
 
-//    @RequestMapping("/error")
-//    public ResponseEntity<?> handleError() {
-//        return ResponseEntity.status(403).build();
-//    }
+    @RequestMapping("/error")
+    public ResponseEntity<?> handleError() {
+        return ResponseEntity.status(403).build();
+    }
 
 }

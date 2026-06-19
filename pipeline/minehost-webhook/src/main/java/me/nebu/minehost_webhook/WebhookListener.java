@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+
 @RestController
 public class WebhookListener {
 
@@ -20,7 +22,16 @@ public class WebhookListener {
         }
 
         if (event.equals("push")) {
-            Pipeline.run();
+            System.out.println("Triggering pipeline (event=" + event + ")");
+            new Thread(() -> {
+                try {
+                    new ProcessBuilder("/bin/bash -c \"source /srv/minehost/pipeline/runner.sh\"")
+                            .directory(new File("/srv/minehost/pipeline"))
+                            .start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
 
         return ResponseEntity.ok().build();
