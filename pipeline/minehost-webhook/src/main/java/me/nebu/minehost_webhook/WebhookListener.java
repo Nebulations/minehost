@@ -25,9 +25,16 @@ public class WebhookListener {
             System.out.println("Triggering pipeline (event=" + event + ")");
             new Thread(() -> {
                 try {
-                    new ProcessBuilder("/bin/bash -c \"source /srv/minehost/pipeline/runner.sh\"")
+                    Process process = new ProcessBuilder(
+                            "/bin/bash",
+                            "-c",
+                            "source /srv/minehost/pipeline/runner.sh"
+                    )
                             .directory(new File("/srv/minehost/pipeline"))
+                            .redirectErrorStream(true)
                             .start();
+
+                    process.onExit().thenAccept(p -> System.out.println("Exited pipeline with status code " + p.exitValue() + "."));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
