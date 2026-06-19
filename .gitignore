@@ -2,3 +2,7 @@
 services/artifacts/
 
 pipeline/webhook/webhook-secret
+
+*.iml
+
+*.secret

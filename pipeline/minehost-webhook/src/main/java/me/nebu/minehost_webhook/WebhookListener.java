@@ -19,7 +19,9 @@ public class WebhookListener {
             return ResponseEntity.status(403).build();
         }
 
-        System.out.println("Event: " + event);
+        if (event.equals("push")) {
+            Pipeline.run();
+        }
 
         return ResponseEntity.ok().build();
     }
