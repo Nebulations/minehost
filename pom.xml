@@ -13,6 +13,8 @@
         <module>plugins/velocity-plugin</module>
 
         <module>services/api</module>
+        <module>services/admin</module>
+        
         <module>pipeline/minehost-webhook</module>
     </modules>
 

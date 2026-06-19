@@ -27,7 +27,15 @@ public class ServerManagement {
 
         List<Map<String, Object>> formattedInfos = new ArrayList<>();
 
-        Database.getServers().forEach(i -> {
+        List<ServerInfo> servers = Database.getServers();
+
+        if (servers == null) {
+            return Map.of(
+                    "status", "UNKNOWN_SERVERS"
+            );
+        }
+
+        servers.forEach(i -> {
             formattedInfos.add(Map.of(
                 "id", i.getId(),
                 "name", i.getName(),
@@ -39,14 +47,6 @@ public class ServerManagement {
 
         return out;
     }
-
-    // @GetMapping("/test")
-    // public Map<String, Object> test() {
-    //     return Map.of(
-    //         "status", "OK",
-    //         "test", new String[]{"a", "b", "c"}
-    //     );
-    // }
 
     @GetMapping("/server/{id}")
     public Map<String, Object> fetchServerInfo(@PathVariable("id") String id, @RequestParam(required = false, defaultValue = "false") boolean byName) {
@@ -74,8 +74,8 @@ public class ServerManagement {
         );
     }
 
-    @GetMapping("/create")
-    public Map<String, Object> createServer(@RequestParam(required = false) String name) {
+    @GetMapping("/create/{name}")
+    public Map<String, Object> createServer(@PathVariable(required = false) String name) {
         if (name == null || name.isBlank()) {
             return Map.of("status", "INVALID_NAME");
         }
@@ -175,7 +175,7 @@ public class ServerManagement {
         );
     }
 
-    @GetMapping("read-console")
+    @GetMapping("/read-console")
     public String readConsole(@RequestParam() String id) {
         return "";
     }

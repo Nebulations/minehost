@@ -1,6 +1,5 @@
 package me.nebu.api;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,15 +15,20 @@ public class Database {
     private static Dao<ServerInfo, String> servers;
 
     public static void start() {
-        File databaseFile = new File("C:/");
-
         try {
-            JdbcConnectionSource src = new JdbcConnectionSource("jdbc:sqlite:" + databaseFile.getAbsolutePath());
+            JdbcConnectionSource src = new JdbcConnectionSource("jdbc:mariadb://"
+                    + System.getenv("DB_HOST")
+                    + ":" + System.getenv("DB_PORT")
+                    + "/" + System.getenv("DB_NAME")
+            );
+
+            src.setUsername(System.getenv("DB_USERNAME"));
+            src.setPassword(System.getenv("DB_PASSWORD"));
 
             TableUtils.createTableIfNotExists(src, ServerInfo.class);
             servers = DaoManager.createDao(src, ServerInfo.class);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
         }
     }
 
@@ -47,15 +51,13 @@ public class Database {
     public static void create(ServerInfo serverInfo) {
         try {
             servers.create(serverInfo);
-        } catch (SQLException e) {}
+        } catch (SQLException ignored) {}
     }
 
     public static void update(ServerInfo serverInfo) {
         try {
             servers.update(serverInfo);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        } catch (SQLException ignored) {}
     }
 
     public static List<ServerInfo> getServers() {

@@ -4,7 +4,7 @@ import me.nebu.api.states.ServerInfo;
 
 public class DockerServerInstance implements ServerInstance {
 
-    private ServerInfo info;
+    private final ServerInfo info;
 
     public DockerServerInstance(ServerInfo info) {
         this.info = info;
@@ -17,7 +17,7 @@ public class DockerServerInstance implements ServerInstance {
 
     @Override
     public void start() {
-        
+
     }
 
     @Override

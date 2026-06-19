@@ -1,5 +1,0 @@
-name: Lobby
-version: '1.0.0'
-main: me.nebu.lobby.Lobby
-api-version: '1.21'
-load: POSTWORLD
