@@ -7,17 +7,20 @@ echo "Starting deployment"
 echo "Current working directory: "
 pwd
 
-echo "Building artifacts"
+echo "==== Building artifacts ===="
 mvn clean package
 
-echo "Moving artifacts"
+echo "==== Moving artifacts ===="
 mv plugins/lobby-plugin/target/lobby-plugin-1.0.0.jar templates/lobby/plugins/MineHost-Lobby.jar
 mv plugins/velocity-plugin/target/velocity-plugin-1.0.0.jar templates/proxy/plugins/MineHost-Velocity.jar
 
-echo "Building docker images"
-# TODO: Build docker images
+echo "==== Building docker images ===="
+echo "Building proxy"
+docker build -t minehost-proxy templates/proxy
+echo "Building lobby"
+docker build -t minehost-lobby templates/lobby
 
-echo "Cleaning up files"
+echo "==== Cleaning up files ===="
 # TODO: Delete files
 
 echo "Done."
