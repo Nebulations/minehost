@@ -34,7 +34,7 @@ docker run -d --name lobby-1 --network minehost -p 30000:25565 minehost-lobby
 echo "==== Cleaning up files ===="
 # TODO: Delete files
 cd ..
-rm code.zip
+rm code.zip # Gets deleted in the first script but just to make sure
 rm -rf minehost-main
 
 echo "Done."
