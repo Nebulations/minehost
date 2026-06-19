@@ -35,7 +35,7 @@ docker run -d --name minehost-proxy --network minehost -p 25565:25565 minehost-p
 docker run -d --name lobby-1 --network minehost -p 30000:25565 minehost-lobby
 
 # Start the API
-docker run -d --name minehost-api --network minehost -p 9000:8080 minehost-api
+docker run -d --name minehost-api --env-file /srv/minehost/config/db.env --network host --restart unless-stopped minehost-api
 
 echo "==== Cleaning up files ===="
 # TODO: Delete files
