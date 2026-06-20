@@ -41,6 +41,11 @@ public class DockerServerInstance implements ServerInstance {
                                                 "/srv/minehost/servers/" + info.getId(),
                                                 new Volume("/data")
                                         )
+                                ).withPortBindings(
+                                        new PortBinding(
+                                                Ports.Binding.bindPort(port),
+                                                new ExposedPort(25565)
+                                        )
                                 )
                 ).exec();
 
