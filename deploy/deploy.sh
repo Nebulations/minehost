@@ -35,7 +35,12 @@ docker run -d --name minehost-proxy --network minehost --add-host=host.docker.in
 docker run -d --name lobby-1 --network minehost -p 30000:25565 minehost-lobby
 
 # Start the API
-docker run -d --name minehost-api --env-file /srv/minehost/config/db.env --network host --restart unless-stopped minehost-api
+docker run -d --name minehost-api \
+  --env-file /srv/minehost/config/db.env \
+  --network host \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --restart unless-stopped \
+  minehost-api
 
 echo "==== Cleaning up files ===="
 # TODO: Delete files
