@@ -52,8 +52,10 @@ public class JoinCommand implements SimpleCommand {
             System.out.println(info.getAddress() + ":" + info.getPort());
 
             if (info.getAddress() != null && info.getPort() != -1) {
-                return this.server.registerServer(new com.velocitypowered.api.proxy.server.ServerInfo(info.getName(),
-                        new InetSocketAddress(info.getAddress(), info.getPort())));
+                return this.server.registerServer(new com.velocitypowered.api.proxy.server.ServerInfo(
+                        info.getName(),
+                        new InetSocketAddress(info.getAddress(), 25565))
+                );
             }
 
             return null;

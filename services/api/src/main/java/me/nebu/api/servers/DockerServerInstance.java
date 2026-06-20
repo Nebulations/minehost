@@ -52,7 +52,7 @@ public class DockerServerInstance implements ServerInstance {
         info.setContainerId(container.getId());
         info.setNetworkingInfo(
                 "minehost-srv-" + info.getId(),
-                port
+                25565
         );
         info.setState(ServerState.STARTING);
 
