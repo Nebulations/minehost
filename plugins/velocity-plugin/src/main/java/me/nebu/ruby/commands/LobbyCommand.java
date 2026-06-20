@@ -23,7 +23,15 @@ public class LobbyCommand implements SimpleCommand {
             return;
         }
 
-        RegisteredServer server = this.server.getServer("lobby-" + LobbyManager.getRandomLobby()).orElse(null);
+        for (RegisteredServer s : server.getAllServers()) {
+            System.out.println("Found: " + s.getServerInfo().getName());
+        }
+
+        String lobby = "lobby-" + LobbyManager.getRandomLobby();
+
+        RegisteredServer server = this.server.getServer(lobby).orElse(null);
+
+        System.out.println("Sending " + player.getUsername() + " to " + lobby + "(" + server + ")");
 
         if (server == null) {
             player.sendMessage(Component.text("An error occurred.", NamedTextColor.RED));
