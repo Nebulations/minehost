@@ -2,23 +2,29 @@ package me.nebu.api.docker;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
-import com.github.dockerjava.core.DockerClientBuilder;
+import com.github.dockerjava.core.DockerClientImpl;
+import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
+import com.github.dockerjava.transport.DockerHttpClient;
+
+import java.net.URI;
 
 public class Docker {
 
     private static final DockerClient client;
 
     static {
-        DefaultDockerClientConfig config = DefaultDockerClientConfig.createDefaultConfigBuilder()
-                .withDockerHost("unix:///var/run/docker.sock")
-                .build();
+        var config =
+                DefaultDockerClientConfig.createDefaultConfigBuilder()
+                        .withDockerHost("unix:///var/run/docker.sock")
+                        .build();
 
-        System.out.println("Host: " + config.getDockerHost());
-        System.out.println("API Version: " + config.getApiVersion().getVersion());
+        DockerHttpClient httpClient =
+                new ApacheDockerHttpClient.Builder()
+                        .dockerHost(URI.create("unix:///var/run/docker.sock"))
+                        .sslConfig(config.getSSLConfig())
+                        .build();
 
-        client = DockerClientBuilder.getInstance(
-                config
-        ).build();
+        client = DockerClientImpl.getInstance(config, httpClient);
     }
 
     public static DockerClient getClient() {
