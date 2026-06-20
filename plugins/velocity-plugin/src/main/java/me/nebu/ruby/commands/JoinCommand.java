@@ -64,7 +64,10 @@ public class JoinCommand implements SimpleCommand {
         if (server == null) {
             player.sendMessage(Component.text("This server does not exist.", NamedTextColor.RED));
             return;
-        }
+        };
+
+        System.out.println("Sending player to " + server.getServerInfo().getAddress().getAddress().getHostAddress() + ":" + server.getServerInfo().getAddress().getPort());
+        System.out.println("name=" + server.getServerInfo().getName());
 
         player.createConnectionRequest(server).connect()
                 .thenAccept(result -> {
