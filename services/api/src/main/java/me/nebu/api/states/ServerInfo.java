@@ -9,6 +9,9 @@ public class ServerInfo {
     @DatabaseField(id = true)
     private String id;
 
+    @DatabaseField(columnName = "owner")
+    private String owner;
+
     @DatabaseField(columnName = "name")
     private String name;
 
@@ -21,13 +24,21 @@ public class ServerInfo {
     @DatabaseField(columnName = "port", defaultValue = "-1")
     private int port;
 
-    @SuppressWarnings("unused")
+    @DatabaseField(columnName = "container-id")
+    private String containerId;
+
+    @DatabaseField(columnName = "container-name")
+    private String containerName;
+
     private ServerInfo() {}
 
-    public ServerInfo(String id, String name) {
+    public ServerInfo(String id, String name, String owner) {
         this.id = id;
         this.name = name;
+        this.owner = owner;
         this.state = ServerState.OFFLINE.name();
+        this.containerId = null;
+        this.containerName = null;
         this.address = null;
         this.port = -1;
     }
@@ -38,6 +49,10 @@ public class ServerInfo {
 
     public String getName() {
         return name;
+    }
+
+    public String getOwner() {
+        return owner;
     }
 
     public ServerState getState() {
@@ -54,6 +69,18 @@ public class ServerInfo {
 
     public int getPort() {
         return port;
+    }
+
+    public String getContainerId() {
+        return containerId;
+    }
+
+    public void setContainerId(String containerId) {
+        this.containerId = containerId;
+    }
+
+    public String getContainerName() {
+        return containerName;
     }
 
     public void setNetworkingInfo(String address, int port) {

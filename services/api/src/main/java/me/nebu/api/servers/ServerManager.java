@@ -14,11 +14,7 @@ public class ServerManager {
     private static int port = 40000;
 
     public static ServerInfo start(ServerInfo server) {
-        server.setNetworkingInfo("127.0.0.1", port);
-        server.setState(ServerState.STARTING);
-
-        // Actually start the server
-        ServerInstance instance = new DockerServerInstance(server);
+        ServerInstance instance = new DockerServerInstance(server, port);
         serverInstances.add(instance);
         instance.start();
 

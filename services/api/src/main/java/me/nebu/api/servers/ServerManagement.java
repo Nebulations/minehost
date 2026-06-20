@@ -86,7 +86,7 @@ public class ServerManagement {
             return Map.of("status", "INVALID_NAME");
         }
 
-        info = new ServerInfo(UUID.randomUUID().toString().replace("-", ""), name);
+        info = new ServerInfo(UUID.randomUUID().toString().replace("-", ""), name, "no owner defined");
 
         Database.create(info);
 

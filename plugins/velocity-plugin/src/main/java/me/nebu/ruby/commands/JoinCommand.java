@@ -69,6 +69,9 @@ public class JoinCommand implements SimpleCommand {
                     if (!result.isSuccessful()) {
                         player.sendMessage(Component.text("An error occurred.", NamedTextColor.RED));
                     }
+                }).exceptionally(throwable -> {
+                    player.sendMessage(Component.text("An unexpected error occurred. Please try again later.", NamedTextColor.RED));
+                    return null;
                 });
     }
 
