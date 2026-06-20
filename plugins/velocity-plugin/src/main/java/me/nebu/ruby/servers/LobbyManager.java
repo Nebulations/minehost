@@ -10,7 +10,7 @@ public class LobbyManager {
         int[] lobbies = new int[count];
 
         for (int i = 0; i < lobbies.length; i++) {
-            lobbies[i] = i;
+            lobbies[i] = i+1;
         }
 
         LobbyManager.lobbies = lobbies;
