@@ -27,7 +27,7 @@ public class DockerServerInstance implements ServerInstance {
         System.out.println("-----");
         System.out.println("Creating docker host");
         System.out.println("ID=" + info.getId());
-        System.out.println("NAME=" + info.getName());
+        System.out.println("NAME=" + info.getName());;
         System.out.println("-----");
 
         CreateContainerResponse container = Docker.getClient()
