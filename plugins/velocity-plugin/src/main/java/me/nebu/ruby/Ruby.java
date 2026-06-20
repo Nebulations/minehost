@@ -26,7 +26,7 @@ public class Ruby {
 
         LobbyManager.configure(1);
 
-        RubyAPI.configure("http://localhost:8080");
+        RubyAPI.configure("http://host.docker.internal:3000");
     }
 
     @Subscribe

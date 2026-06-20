@@ -29,7 +29,7 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 
 # Start the proxy
-docker run -d --name minehost-proxy --network minehost -p 25565:25565 minehost-proxy
+docker run -d --name minehost-proxy --network minehost --add-host=host.docker.internal:host-gateway -p 25565:25565 minehost-proxy
 
 # Start lobby 1
 docker run -d --name lobby-1 --network minehost -p 30000:25565 minehost-lobby
