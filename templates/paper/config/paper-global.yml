@@ -1,0 +1,8 @@
+proxies:
+  bungee-cord:
+    online-mode: false
+  proxy-protocol: false
+  velocity:
+    enabled: true
+    online-mode: false
+    secret: pasTc7aAEz9S

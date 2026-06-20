@@ -20,6 +20,9 @@ docker build -t minehost-proxy templates/proxy
 echo "Building lobby"
 docker build -t minehost-lobby templates/lobby
 
+echo "Building paper"
+docker build -t minehost-paper templates/paper
+
 echo "Building API"
 docker build -t minehost-api services/api
 
@@ -45,7 +48,6 @@ docker run -d --name minehost-api \
 echo "==== Cleaning up files ===="
 # TODO: Delete files
 cd ..
-rm code.zip # Gets deleted in the first script but just to make sure
 rm -rf minehost-main
 
 echo "Done."
