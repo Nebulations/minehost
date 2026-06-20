@@ -24,6 +24,12 @@ public class DockerServerInstance implements ServerInstance {
 
     @Override
     public void start() {
+        System.out.println("-----");
+        System.out.println("Creating docker host");
+        System.out.println("ID=" + info.getId());
+        System.out.println("NAME=" + info.getName());
+        System.out.println("-----");
+
         CreateContainerResponse container = Docker.getClient()
                 .createContainerCmd("minehost-paper")
                 .withName("minehost-srv-" + info.getId())
