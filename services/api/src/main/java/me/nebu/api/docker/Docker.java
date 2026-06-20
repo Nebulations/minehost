@@ -23,6 +23,8 @@ public class Docker {
                         .sslConfig(config.getSSLConfig())
                         .build();
 
+        System.out.println("DOCKER HOST=" + config.getDockerHost());
+
         client = DockerClientImpl.getInstance(config, httpClient);
     }
 
